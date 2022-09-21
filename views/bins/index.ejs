@@ -1,0 +1,7 @@
+<h1>Bins</h1>
+
+<ul>
+    <% bins.forEach((bin) => { %>
+        <li><a href="bins/<%= bin.id %>"><%= bin.name %></a></li>
+    <% }); %>
+</ul>

@@ -1,0 +1,35 @@
+<h1>Create New Bin</h1>
+
+<script>
+    let itemNumber = 1;
+    let items = [];
+
+    function createItem() {
+        items.push({
+            id: `item_${itemNumber}`,
+            text: '',
+            image: ''
+        });
+        itemNumber++;
+    }
+</script>
+
+<form method="post">
+    <input type="text" name="name" id="name" /><br>
+    <table id="item_table">
+    </table>
+
+    <button type="submit">Create</button>
+</form>
+
+<script>
+    createItem();
+    createItem();
+    window.items = items;
+
+    let html = document.getElementById("item_table").innerHTML;
+    items.forEach(item => {
+        html += `<tr><td><input type='text' name='items' id='${item.id}' value='${item.text}'/></td><td><a href=''>Delete</a></td></tr>`;
+    });
+    document.getElementById("item_table").innerHTML = html;
+</script>
