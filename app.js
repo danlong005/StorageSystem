@@ -13,6 +13,8 @@ const authRoutes = require('./routes/auth_router');
 const binsRoutes = require('./routes/bins_router');
 const homeRoutes = require('./routes/home_router');
 
+const authenticatedMiddleware = require('./middleware/authenticated_middleware');
+
 const app = express();
 
 // view engine setup
@@ -40,12 +42,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-function authenticated(req, res, next) {
- next(createError(401));
-}
-
 app.use('', authRoutes);
-app.use('', binsRoutes);
+app.use('', authenticatedMiddleware, binsRoutes);
 app.use('', homeRoutes);
 
 // catch 404 and forward to error handler

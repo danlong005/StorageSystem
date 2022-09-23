@@ -1,4 +1,7 @@
 const config = {
+    CRYPTO: {
+        KEY: process.env.CRYPTO_KEY || 'this is junk'
+    },
     PORT: process.env.PORT || 3000,
     SECRET: process.env.SECRET || 'junk',
     DB: {

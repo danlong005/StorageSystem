@@ -12,6 +12,6 @@ const Bin = sequelize.define('bin', {
 
 // associations
 Bin.hasMany(Item);
-Bin.hasOne(User);
+User.hasMany(Bin);
 
 module.exports = Bin;
