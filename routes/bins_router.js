@@ -6,8 +6,12 @@ router.get('/users/:id/bins', async (req, res) => {
     const bins = await getBins();
     const data = {
         bins,
-        title: "List Bins"
+        title: "List Bins",
+        authentication: req.session.authentication
     };
+
+    console.log(data);
+
     res.render('bins/index', data);
 });
 

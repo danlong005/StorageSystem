@@ -11,14 +11,16 @@ async function authenticate(userRequest) {
         });
 
         let response = {};
+        response.authenticated = false;
         if (user != null) {
-            let decryptedPassword = CryptoJS.AES.decrypt(userRequest.password, config.CRYPTO.KEY);
-            if (userRequest.password == decryptedPassword) {
+            let decryptedPassword = CryptoJS.AES.decrypt(user.password, config.CRYPTO.KEY);
+            if (userRequest.password == decryptedPassword.toString(CryptoJS.enc.Utf8)) {
+                console.log(`Here I am`)
                 response.user = user.email;
                 response.id = user.id;
+                response.authenticated = true;
             }
         }
-        response.authenticated = (user != null);
 
         return response;
     } catch (error) {

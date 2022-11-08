@@ -33,14 +33,11 @@ router.post('/auth/signup', async (req, res) => {
 
 router.post('/auth/signin', async (req, res) => {
     let authentication = await authenticate(req.body);
+    console.log(authentication);
     req.session.authentication = authentication;
 
     if (authentication.authenticated) {
-        if (req.session.previousPage != null) {
-            res.redirect(req.session.previousPage);
-        } else {
-            res.redirect(`/users/${authentication.id}/bins`);
-        }
+        res.redirect(`/users/${authentication.id}/bins`);
     } else {
         let message = `Something is wrong with your username and password combo`;
         res.redirect(`/auth/signin?message=${message}`);

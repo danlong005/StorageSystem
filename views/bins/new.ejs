@@ -4,18 +4,54 @@
     let itemNumber = 1;
     let items = [];
 
+    function getItems() {
+        return Array.from(document.getElementsByName("items")).map(i => {
+            return {
+                id: i.id,
+                text: i.value,
+                image: ''
+            };
+        });
+    }
+
     function createItem() {
+        items = getItems();
+
         items.push({
             id: `item_${itemNumber}`,
             text: '',
             image: ''
         });
         itemNumber++;
+
+        clearItems();
+        renderItems();
+    }
+
+    function deleteItem(id) {
+        items = getItems();
+
+        items = items.filter(i => i.id !== id);
+
+        clearItems();
+        renderItems();
+    }
+
+    function clearItems() {
+        document.getElementById("item_table").innerHTML = "<div></div>";
+    }
+
+    function renderItems() {
+        let html = document.getElementById("item_table").innerHTML;
+        items.forEach(item => {
+            html += `<tr><td><input type='text' name='items' id='${item.id}' value='${item.text}'/></td><td><a href="javascript:deleteItem('${item.id}')">Delete</a> | <a href="javascript:createItem()">Add</a></td></tr>`;
+        });
+        document.getElementById("item_table").innerHTML = html;
     }
 </script>
 
 <form method="post">
-    <input type="text" name="name" id="name" /><br>
+    <p>name:</p><input type="text" name="name" id="name" /><br>
     <table id="item_table">
     </table>
 
@@ -24,12 +60,6 @@
 
 <script>
     createItem();
-    createItem();
     window.items = items;
 
-    let html = document.getElementById("item_table").innerHTML;
-    items.forEach(item => {
-        html += `<tr><td><input type='text' name='items' id='${item.id}' value='${item.text}'/></td><td><a href=''>Delete</a></td></tr>`;
-    });
-    document.getElementById("item_table").innerHTML = html;
 </script>
