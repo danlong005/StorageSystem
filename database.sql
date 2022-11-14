@@ -1,3 +1,5 @@
+create database storage;
+
 create table users (
     id bigint generated always as identity,
     "firstName" varchar(255),

@@ -18,7 +18,8 @@ router.get('/users/:id/bins', async (req, res) => {
 // show the page for entering the new bin
 router.get('/users/:id/bins/new', (req, res) => {
     const data = {
-        title: "Create Bin"
+        title: "Create Bin",
+        id: req.params.id
     };
     res.render('bins/new', data);
 });

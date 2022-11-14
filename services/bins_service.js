@@ -20,11 +20,17 @@ async function getBinById(id) {
 
 async function createBin(newBin) {
     try {
-        newBin.items = newBin.items.map(item => {
-            return {
-                name: item
-            }
-        });
+        if (Array.isArray(newBin.items)) {
+            newBin.items = newBin.items.map(item => {
+                return {
+                    name: item
+                }
+            });
+        } else {
+            newBin.items = [{
+                name: newBin.items
+            }];
+        }
 
         console.log(newBin);
 

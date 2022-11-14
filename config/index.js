@@ -5,9 +5,9 @@ const config = {
     PORT: process.env.PORT || 3000,
     SECRET: process.env.SECRET || 'junk',
     DB: {
-        NAME: process.env.DB_NAME || 'inventory',
+        NAME: process.env.DB_NAME || 'storage',
         USER: process.env.DB_USER || 'postgres',
-        PASSWORD: process.env.DB_PASSWORD || 'blaDan3#',
+        PASSWORD: process.env.DB_PASSWORD || 'password',
         HOST: process.env.DB_HOST || 'localhost',
         POOL: {
             MAX: process.env.DB_POOL_MAX || 10,

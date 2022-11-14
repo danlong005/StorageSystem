@@ -48,13 +48,19 @@
         });
         document.getElementById("item_table").innerHTML = html;
     }
+
+    function cancel() {
+        window.location.href = `/users/<%= id %>/bins`;
+    }
 </script>
 
 <form method="post">
+    <input type="hidden" name="userId" id="userId" value="<%= id %>" />
     <p>name:</p><input type="text" name="name" id="name" /><br>
     <table id="item_table">
     </table>
 
+    <button type="button" onclick="cancel()">Cancel</button>
     <button type="submit">Create</button>
 </form>
 
