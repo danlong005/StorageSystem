@@ -19,7 +19,8 @@ router.get('/users/:id/bins', async (req, res) => {
 router.get('/users/:id/bins/new', (req, res) => {
     const data = {
         title: "Create Bin",
-        id: req.params.id
+        id: req.params.id,
+        authentication: req.session.authentication
     };
     res.render('bins/new', data);
 });
@@ -30,7 +31,9 @@ router.post('/users/:id/bins/new', async (req, res) => {
 
     const data = {
         title: "Bin Created",
-        bin: newBin
+        bin: newBin,
+        id: req.params.id,
+        authentication: req.session.authentication
     };
 
     res.render("bins/create", data);
@@ -42,7 +45,8 @@ router.get('/users/:id/bins/:binId', async (req, res) => {
     const bin = await getBinById(binId);
     const data = {
         bin,
-        title: `List Bin ${bin.name}`
+        title: `List Bin ${bin.name}`,
+        authentication: req.session.authentication
     };
     res.render('bins/show', data);
 });

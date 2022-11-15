@@ -1,4 +1,10 @@
+<br />
+<br />
 <div id="qr_code"></div>
+<br />
+<h1>Bin # <%= bin.id %></h1>
+
+<a href="/users/<%= id %>/bins">Bin List</a>
 
 <script type="text/javascript">
     new QRCode(document.getElementById("qr_code"), "http://localhost:3000/bins/<%= bin.id %>");

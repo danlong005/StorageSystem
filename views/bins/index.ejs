@@ -1,10 +1,16 @@
-<h1>Bins</h1>
+<br />
 
-<a href="/auth/signout">Sign Out</a>
-<br>
+<div>
+        <form class="d-flex">
+                <a href="/users/<%= authentication.id %>/bins/new" class="btn btn-outline-success">+</a>
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+</div>
 
-<a href="/users/<%= authentication.id %>/bins/new">Create Bin</a>
-
+<br />
+<br />
+<h1>Existing Bins</h1>
 <ul>
     <% bins.forEach((bin) => { %>
         <li><a href="bins/<%= bin.id %>"><%= bin.name %></a></li>

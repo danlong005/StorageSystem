@@ -1,0 +1,17 @@
+<nav class="navbar fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Storage System</a>
+
+        <div class="">
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <% if (typeof authentication !== 'undefined') { %>
+                        <% if (typeof authentication.authenticated !== 'undefined' && authentication.authenticated) { %>
+                            <a class="nav-link" href="/auth/signout">Sign Out</a>
+                        <% } %>
+                    <% } %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
