@@ -10,8 +10,6 @@ router.get('/users/:id/bins', async (req, res) => {
         authentication: req.session.authentication
     };
 
-    console.log(data);
-
     res.render('bins/index', data);
 });
 
@@ -48,6 +46,7 @@ router.get('/users/:id/bins/:binId', async (req, res) => {
         title: `List Bin ${bin.name}`,
         authentication: req.session.authentication
     };
+    
     res.render('bins/show', data);
 });
 

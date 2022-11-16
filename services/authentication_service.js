@@ -15,7 +15,6 @@ async function authenticate(userRequest) {
         if (user != null) {
             let decryptedPassword = CryptoJS.AES.decrypt(user.password, config.CRYPTO.KEY);
             if (userRequest.password == decryptedPassword.toString(CryptoJS.enc.Utf8)) {
-                console.log(`Here I am`)
                 response.user = user.email;
                 response.id = user.id;
                 response.authenticated = true;
@@ -32,5 +31,5 @@ async function authenticate(userRequest) {
 }
 
 module.exports = {
-    authenticate,
+    authenticate
 }

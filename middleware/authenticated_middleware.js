@@ -23,4 +23,15 @@ function authenticated(session) {
     return false;
 }
 
-module.exports = authenticatedMiddleware;
+function redirectIfLoggedIn(req, res, next) { 
+    if (typeof req.session.authentication !== 'undefined' && req.session.authentication.authenticated) {
+        res.redirect(`/users/${req.session.authentication.id}/bins`);
+    } else {
+        next();
+    }
+}
+
+module.exports = {
+    authenticatedMiddleware,
+    redirectIfLoggedIn
+}

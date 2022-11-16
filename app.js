@@ -13,7 +13,7 @@ const authRoutes = require('./routes/auth_router');
 const binsRoutes = require('./routes/bins_router');
 const homeRoutes = require('./routes/home_router');
 
-const authenticatedMiddleware = require('./middleware/authenticated_middleware');
+const { authenticatedMiddleware } = require('./middleware/authenticated_middleware');
 
 const app = express();
 

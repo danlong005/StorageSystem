@@ -1,16 +1,18 @@
 const router = require('express').Router();
 const { authenticate } = require('../services/authentication_service');
+const { redirectIfLoggedIn } = require('../middleware/authenticated_middleware');
 const { createUser } = require('../services/user_service');
 
-router.get('/auth/signin', (req, res) => {
+router.get('/auth/signin', redirectIfLoggedIn, (req, res) => {
     const data = {
         title: "Sign In",
         message: req.query.message
     };
+
     res.render('auth/signin', data);
 });
 
-router.get('/auth/signup', (req, res) => {
+router.get('/auth/signup', redirectIfLoggedIn, (req, res) => {
     const data = {
         title: "Sign Up",
         message: req.query.message
@@ -33,7 +35,6 @@ router.post('/auth/signup', async (req, res) => {
 
 router.post('/auth/signin', async (req, res) => {
     let authentication = await authenticate(req.body);
-    console.log(authentication);
     req.session.authentication = authentication;
 
     if (authentication.authenticated) {
