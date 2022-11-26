@@ -1,4 +1,4 @@
-const {getBins, getBinById, createBin} = require("../services/bins_service");
+const {getBins, getBinById, createBin, searchBins} = require("../services/bins_service");
 const router = require('express').Router();
 
 // return a list of bins
@@ -48,6 +48,24 @@ router.get('/users/:id/bins/:binId', async (req, res) => {
     };
     
     res.render('bins/show', data);
+});
+
+
+// search the bins for an item
+router.get('/users/:id/bins/search', async (req, res) => {
+    // const userId = req.params.id;
+    // const search = req.query.search;
+
+    const userId = 1;
+    const search = "";
+
+    console.log("==================================================")
+    console.log(search);
+
+
+    const bins = await searchBins(userId, search);
+
+    res.status(200).json(bins);
 });
 
 module.exports = router;

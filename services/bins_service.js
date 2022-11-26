@@ -43,8 +43,22 @@ async function createBin(newBin) {
     }
 }
 
+async function searchBins(userId, search) {
+    // let q = `%${search}%`;
+    // const [items, metadata] = await sequelize.query(
+    //     `SELECT i.name, b.name FROM bins AS b JOIN items AS i
+    //         on i."binId" == b.id
+    //      WHERE b."userId" == ${userId}
+    //      AND   i.name like ${q}`);
+    //
+    // return items;
+
+    return [];
+}
+
 module.exports = {
     getBins,
     getBinById,
-    createBin
+    createBin,
+    searchBins
 }
