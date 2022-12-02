@@ -1,37 +1,15 @@
+import { authenticated } from '../services/jwt_service';
 
-function authenticatedMiddleware(req: any, res: any, next: any) {
-    const session = req.session;
+function authenticatedMiddleware(req: any, res: any, next: any): void {
+    const jwt:string = req.header('Authorized').replace('Bearer ');
 
-    if (authenticated(session)) {
+    if (authenticated(jwt)) {
         next();
     } else {
-        req.session.previousPage = req.url;
-        const message = "You have not signed in.";
-        res.redirect(`/auth/signin?message=${message}`);
-    }
-}
-
-function authenticated(session: any) {
-    if (session != null) {
-        if (session.authentication != null) {
-            if (session.authentication.authenticated) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-function redirectIfLoggedIn(req: any, res: any, next: any) {
-    if (typeof req.session.authentication !== 'undefined' && req.session.authentication.authenticated) {
-        res.redirect(`/users/${req.session.authentication.id}/bins`);
-    } else {
-        next();
+        res.status(401).json({});
     }
 }
 
 export {
-    authenticatedMiddleware,
-    redirectIfLoggedIn
+    authenticatedMiddleware
 }

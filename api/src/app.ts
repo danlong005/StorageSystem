@@ -4,13 +4,13 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 
 import config from './config';
-import sequelize from './models/database';
+import sequelize from './database';
 
 import authRoutes from './routes/auth_router';
-import binsRoutes from './routes/bins_router';
-import homeRoutes from './routes/home_router';
+import binsRoutes from './routes/bin_router';
+import userRoutes from './routes/user_router';
 
-const { authenticatedMiddleware } = require('../middleware/authenticated_middleware');
+import { authenticatedMiddleware } from './middleware/authenticated_middleware';
 
 const app = express();
 
@@ -20,15 +20,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('', authRoutes);
 app.use('', authenticatedMiddleware, binsRoutes);
-app.use('', homeRoutes);
+app.use('', userRoutes);
 
 // catch 404 and forward to error handler
-app.use(function(req: any, res: any, next: any) {
+app.use((req: any, res: any, next: any) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err: any, req: any, res: any, next: any) {
+app.use((err: any, req: any, res: any, next: any) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

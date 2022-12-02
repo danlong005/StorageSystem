@@ -1,5 +1,5 @@
-import config from '../config';
-import { Sequelize } from 'sequelize';
+import config from './config';
+import { Sequelize } from 'sequelize-typescript';
 
 const sequelize = new Sequelize(config.DB.NAME, config.DB.USER, config.DB.PASSWORD, {
     host: config.DB.HOST,

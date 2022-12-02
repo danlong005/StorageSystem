@@ -1,14 +1,18 @@
-import { DataTypes } from 'sequelize';
-import sequelize  from './database';
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import sequelize from '../database';
+import Bin from './bin_model';
+@Table
+class User extends Model {
+    @Column
+    email: string;
 
+    @Column
+    password: string;
 
-const User = sequelize.define('user', {
-    email: {
-        type: DataTypes.STRING
-    },
-    password: {
-        type: DataTypes.STRING
-    }
-},{});
+    @HasMany(() => Bin)
+    bins: Bin[];
+}
+
+sequelize.addModels([User]);
 
 export default User;

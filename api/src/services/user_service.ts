@@ -2,7 +2,7 @@ import  { User } from '../models'
 import CryptoJS from 'crypto-js';
 import config from '../config';
 
-async function createUser (requestUser: any) {
+async function createUser (requestUser: any): Promise<any> {
     try {
         const encryptedPassword = CryptoJS.AES.encrypt(requestUser.password, config.CRYPTO.KEY);
 

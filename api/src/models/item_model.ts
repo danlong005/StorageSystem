@@ -1,16 +1,18 @@
-import { DataTypes } from 'sequelize';
-import sequelize  from './database';
+import { Table, Model, Column } from 'sequelize-typescript';
+import sequelize  from '../database';
 
-const Item = sequelize.define('item', {
-    binId: {
-        type: DataTypes.BIGINT
-    },
-    name: {
-        type: DataTypes.STRING
-    },
-    image: {
-        type: DataTypes.STRING
-    }
-},{});
+@Table
+class Item extends Model {
+    @Column
+    binId: bigint;
+
+    @Column
+    name: string;
+
+    @Column
+    image: string;
+}
+
+sequelize.addModels([Item]);
 
 export default Item;

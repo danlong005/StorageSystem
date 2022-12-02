@@ -14,7 +14,7 @@ async function authenticate(userRequest: any) {
         response.authenticated = false;
         if (user != null) {
             const decryptedPassword = CryptoJS.AES.decrypt(user.password, config.CRYPTO.KEY);
-            if (userRequest.password == decryptedPassword.toString(CryptoJS.enc.Utf8)) {
+            if (userRequest.password === decryptedPassword.toString(CryptoJS.enc.Utf8)) {
                 response.user = user.email;
                 response.id = user.id;
                 response.authenticated = true;
